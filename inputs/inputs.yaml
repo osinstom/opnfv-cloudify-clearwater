@@ -1,0 +1,14 @@
+image_id: 345c239a-903c-4fe3-911a-4024b8fa2651
+flavor_id: 2
+agent_user: ubuntu
+key_pair_name: tpst
+private_key_path: '~/.ssh/tpst.pem'
+network_name: 'clearwater_net'
+external_network_name: 'VM_MGT_network'
+public_domain: clearwater.opnfv
+release: repo122
+bono_cluster_size: 2
+sprout_cluster_size: 2
+vellum_cluster_size: 2
+dime_cluster_size: 2
+homer_cluster_size: 1
