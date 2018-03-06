@@ -82,6 +82,13 @@ def configure(subject=None):
          error_message='Failed to write to {0}.'.format(CONFIG_PATH))
     _run('sudo chmod 644 {0}'.format(CONFIG_PATH),
          error_message='Failed to change permissions {0}.'.format(CONFIG_PATH))
+    
+    # This is a workaround for issue where call is dropped after 30 seconds due to SIP ACK cannot be delivered from caller.
+    # The issue is caused by wrong configuration of P-CSCF, when DNS is not accessible by SIP users.  
+    if 'bono' in name:
+        domain_name = config['name'] + "." + config['private_domain']
+        _run("sudo sed -i 's/{0}/{1}/g' /etc/clearwater/local_config".format(domain_name, config['public_ip']),
+             error_message='Failed to change P-CSCF configuration')
 
     template = Template(ctx.get_resource(TEMPLATE_RESOURCE_NAME_NAMESERVER))
 
